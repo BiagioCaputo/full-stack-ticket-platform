@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         \App\Models\Ticket::factory(10)->create();
+        \App\Models\Operator::factory(10)->create();
     }
 }
