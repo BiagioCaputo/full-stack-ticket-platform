@@ -16,12 +16,12 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Insert The Description</label>
-                <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ old('description') }}</textarea>
+                <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="status" class="form-label">Insert The Status</label>
-                <select name="status" id="status" class="form-select">
+                <select name="status" id="status" class="form-select" required>
                     <option value="" disabled class="
                 " selected>Select A Status</option>
                     <option value="ASSEGNATO" class="">ASSEGNATO</option>
