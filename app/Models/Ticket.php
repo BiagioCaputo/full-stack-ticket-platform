@@ -14,4 +14,10 @@ class Ticket extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    //Un ticket può avere più operatori
+    public function operators()
+    {
+        return $this->hasMany(Operator::class);
+    }
 }
