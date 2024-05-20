@@ -19,7 +19,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        $this->call(CategoriesSeeder::class);
+
         \App\Models\Ticket::factory(10)->create();
+
         \App\Models\Operator::factory(10)->create();
     }
 }
