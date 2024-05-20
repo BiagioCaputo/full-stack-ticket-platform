@@ -32,15 +32,29 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required | max:255',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+
+
+        $addTicket = $request->all();
+
+        $newTicket = new Ticket();
+        $newTicket->fill($addTicket);
+
+        $newTicket->save();
+
+        return redirect()->route('dashboard.tickets.index', ['ticket' => $newTicket->id]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Ticket $ticket)
     {
-        //
+        return view('admin.dishes.show',compact('ticket'));
     }
 
     /**

@@ -9,6 +9,10 @@ class Ticket extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title','description','status'
+    ];
+
     //Ogni ticket può avere una sola categoria
     public function category()
     {
