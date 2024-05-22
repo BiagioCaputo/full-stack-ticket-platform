@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::all();
-        return view('admin.dishes.index', compact('tickets'));
+        $categories = Category::all();
+        return view('admin.dishes.index', compact('tickets','categories'));
     }
 
     /**
@@ -24,7 +26,8 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return view('admin.dishes.create');
+        $categories = Category::all();
+        return view('admin.dishes.create',compact('categories'));
     }
 
     /**
@@ -38,7 +41,6 @@ class TicketController extends Controller
             'status' => 'required',
         ]);
 
-
         $addTicket = $request->all();
 
         $newTicket = new Ticket();
@@ -47,6 +49,8 @@ class TicketController extends Controller
         $newTicket->save();
 
         return redirect()->route('dashboard.tickets.index', ['ticket' => $newTicket->id]);
+
+        // dd($request->all());
     }
 
     /**

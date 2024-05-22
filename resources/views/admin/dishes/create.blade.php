@@ -10,8 +10,8 @@
 
             <div class="my-3">
                 <label for="title" class="form-label">Insert The Title</label>
-                <input type="text" class="form-control" id="title"
-                    aria-describedby="title" name="title" value='{{ old('title') }}' required>
+                <input type="text" class="form-control" id="title" aria-describedby="title" name="title"
+                    value='{{ old('title') }}' required>
             </div>
 
             <div class="mb-3">
@@ -27,6 +27,18 @@
                     <option value="ASSEGNATO" class="">ASSEGNATO</option>
                     <option value="IN LAVORAZIONE" class="">IN LAVORAZIONE</option>
                     <option value="CHIUSO" class="">CHIUSO</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="category" class="form-label">Insert The Category</label>
+                <select name="category_id" id="category" class="form-select" required>
+                    <option value="" disabled class="
+                " selected>Select A Status</option>
+
+                @foreach ( $categories as $item)
+                    <option value="{{$item->id}}">{{$item->label}}</option>
+                @endforeach
                 </select>
             </div>
 
