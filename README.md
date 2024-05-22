@@ -1,66 +1,62 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel-Tickets Brief
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## **Introduzione**
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   Realizziamo un’applicazione in Laravel che visualizza e permette di gestire e ricercare in maniera interattiva dei Ticket di supporto. E’ prevista una sola tipologia di utente: admin. L’admin ha accesso alla lista degli operatori, dei ticket e delle relative categorie.
+-   Sui ticket sono possibili le seguenti operazioni: creazione, aggiornamento dello stato e assegnazione ad un operatore. Un ticket deve essere obbligatoriamente assegnato ad un operatore **disponibile** in fase di creazione.
+-   Per questa fase non è prevista alcuna visualizzazione avanzata dei ticket se non una semplice lista.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## **Tipi di Utenti**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+-   **Utente registrato UR** → un utente che ha effettuato la registrazione come admin
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Milestone
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   [ ] **Milestone** 1️⃣ → Sviluppare un diagramma ER per le entità e le relazioni dell’applicativo.
+-   [ ] **Milestone** 2️⃣ → Seguendo il diagramma creato nella prima milestone
+    -   Creiamo e popoliamo il database attraverso migrations e seeders
+        -   [ ] Migrations (admin, ticket, operatore, categoria)
+        -   [ ] Factory (ticket, operator)
+    -   Caratteristiche entità Ticket
+        -   id
+        -   data
+        -   titolo
+        -   descrizione
+        -   categoria
+        -   operatore
+        -   stato (assigned, work in progress, closed)
+-   [ ] **Milestone** 3️⃣ → Realizziamo un setup dell’applicativo con back-office e autenticazione riservata ad un unico utente amministratore: l’admin.
+-   [ ] **Milestone** 4️⃣ → Aggiungiamo la possibilità di creare un nuovo ticket, a cui andrà obbligatoriamente assegnata anche una categoria, un operatore e uno stato. In questa fase nella selezione possiamo includere tutti gli operatori.
+    -   **Attenzione →** vedi Milestone \*\*\*\*7️⃣
+        -   Un ticket deve essere obbligatoriamente assegnato ad un operatore **disponibile** in fase di creazione ➜ One To Many (un ticket lo posso assegnare a piu operatori)
+        -   Controllo sugli operatori, se hanno già un ticket attivo non sono piu selezionabili
+-   [ ] **Milestone** 5️⃣ → Realizziamo una pagina di dettaglio del singolo ticket, con la visualizzazione di tutte le informazioni contenute in esso (facoltativa)
+-   [ ] **Milestone** 6️⃣ → Aggiungiamo la possibilità di modificare lo stato di un ticket (ad esempio da “work in progress” a “closed”). Le altre proprietà non possono essere modificate.
+-   [ ] **Milestone** 7️⃣ → In fase di assegnazione di un ticket, aggiungiamo la verifica della disponibilità dell’operatore. Un operatore è occupato quando:
+    -   ha un ticket attivo già assegnato, oppure
+    -   ha il flag non disponibile attivo
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+-   [ ] **Bonus** 1️⃣ **→** Alla creazione e alla chiusura del ticket viene inviata una mail all’operatore che lo informi dell’avvenuta creazione o dell’avvenuta chiusura del ticket in oggetto.
+-   [ ] **Bonus** 2️⃣ **→** Aggiungiamo delle note aggiuntive (testuali) alla risorsa ticket, da poter visualizzare nella pagina di dettaglio.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## **Lista delle pagine**
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-   **Homepage → non ha caratteristiche particolari**
+-   **Register Page** → ci si può registrare
+-   **Login Page** → si può effettuare l’accesso
+-   **Dashboard Utente Registrato →** permette la gestione dei propri dati
+    -   **Add A New Ticket** | **Create & Store** → crea un nuovo ticket
+    -   **Ticket Page | Show→ permette di vedere il ticket nel dettaglio**
+    -   **Tickets Page** | **Index** → tabella dei ticket
