@@ -27,10 +27,9 @@ class TicketController extends Controller
     {
         // Otteniamo gli operatori disponibili
         $available_operators = Operator::where('available', 1)->whereNull('ticket_id')->get();
-        dd($available_operators);
 
         // Passiamo gli operatori disponibili alla vista
-        return view('tickets.create', compact('available_operators'));
+        return view('admin.dishes.create', compact('available_operators'));
     }
 
     /**
@@ -53,14 +52,14 @@ class TicketController extends Controller
         $newTicket->save();
 
         // Assegnazione degli operatori al ticket
-        // $operators = $request->input('operators', []);
-        // foreach ($operators as $operator_id) {
-        //     $operator = Operator::find($operator_id);
-        //     if ($operator) {
-        //         $operator->ticket_id = $newTicket->id;
-        //         $operator->save();
-        //     }
-        // }
+        $operators = $request->input('operators', []);
+        foreach ($operators as $operator_id) {
+            $operator = Operator::find($operator_id);
+            if ($operator) {
+                $operator->ticket_id = $newTicket->id;
+                $operator->save();
+            }
+        }
 
         return redirect()->route('dashboard.tickets.index', ['ticket' => $newTicket->id]);
     }
