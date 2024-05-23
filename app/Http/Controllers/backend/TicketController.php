@@ -25,10 +25,10 @@ class TicketController extends Controller
      */
     public function create()
     {
-        // Otteniamo gli operatori disponibili
+        // Ottengo gli operatori disponibili
         $available_operators = Operator::where('available', 1)->whereNull('ticket_id')->get();
 
-        // Passiamo gli operatori disponibili alla vista
+
         return view('admin.dishes.create', compact('available_operators'));
     }
 
@@ -51,7 +51,7 @@ class TicketController extends Controller
 
         $newTicket->save();
 
-        // Assegnazione degli operatori al ticket
+        // Assegno gli operatori al ticket
         $operators = $request->input('operators', []);
         foreach ($operators as $operator_id) {
             $operator = Operator::find($operator_id);
@@ -69,7 +69,11 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        return view('admin.dishes.show', compact('ticket'));
+
+        // Trovo gli operatori associati al ticket selezionato
+        $operators = Operator::where('ticket_id', $ticket->id)->get();
+
+        return view('admin.dishes.show', compact('ticket', 'operators'));
     }
 
     /**

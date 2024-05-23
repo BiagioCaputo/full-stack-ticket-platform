@@ -30,7 +30,7 @@
                 </select>
             </div>
 
-            
+            {{-- lista operatori disponibili --}}
             <div class="mb-3">
                 <label for="operators">Operatori Disponibili</label>
                 <div class="form-check">
