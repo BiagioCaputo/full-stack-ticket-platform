@@ -13,5 +13,17 @@
 
         <p>{{ $ticket->description }}</p>
 
+        {{-- lista operatori assegnati al ticket --}}
+        <h2 class="mt-4 fw-bold">Operatori Assegnati</h2>
+        @if ($ticket->operators->isNotEmpty())
+            <ul>
+                @foreach ($ticket->operators as $operator)
+                    <li>{{ $operator->name }}</li>
+                @endforeach
+            </ul>
+        @else
+            <p>Nessun operatore assegnato a questo ticket.</p>
+        @endif
+
     </div>
 @endsection

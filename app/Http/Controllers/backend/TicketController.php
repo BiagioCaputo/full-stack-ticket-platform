@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Operator;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,11 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return view('admin.dishes.create');
+        // Ottengo gli operatori disponibili
+        $available_operators = Operator::where('available', 1)->whereNull('ticket_id')->get();
+
+
+        return view('admin.dishes.create', compact('available_operators'));
     }
 
     /**
@@ -46,6 +51,16 @@ class TicketController extends Controller
 
         $newTicket->save();
 
+        // Assegno gli operatori al ticket
+        $operators = $request->input('operators', []);
+        foreach ($operators as $operator_id) {
+            $operator = Operator::find($operator_id);
+            if ($operator) {
+                $operator->ticket_id = $newTicket->id;
+                $operator->save();
+            }
+        }
+
         return redirect()->route('dashboard.tickets.index', ['ticket' => $newTicket->id]);
     }
 
@@ -54,7 +69,11 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        return view('admin.dishes.show',compact('ticket'));
+
+        // Trovo gli operatori associati al ticket selezionato
+        $operators = Operator::where('ticket_id', $ticket->id)->get();
+
+        return view('admin.dishes.show', compact('ticket', 'operators'));
     }
 
     /**

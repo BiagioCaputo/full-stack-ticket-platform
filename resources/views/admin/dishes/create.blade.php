@@ -30,6 +30,21 @@
                 </select>
             </div>
 
+            {{-- lista operatori disponibili --}}
+            <div class="mb-3">
+                <label for="operators">Operatori Disponibili</label>
+                <div class="form-check">
+                    @foreach($available_operators as $operator)
+                        <div>
+                            <input class="form-check-input" type="checkbox" name="operators[]" id="operator-{{ $operator->id }}" value="{{ $operator->id }}">
+                            <label class="form-check-label" for="operator-{{ $operator->id }}">
+                                {{ $operator->name }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary d-block ms-auto">ADD</button>
         </form>
 
