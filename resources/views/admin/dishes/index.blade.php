@@ -12,10 +12,10 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Category</th>
-                <th scope="col">Operator</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">categoria</th>
+                {{-- <th scope="col">Operator</th> --}}
                 <th scope="col">Status</th>
             </tr>
         </thead>
@@ -24,18 +24,18 @@
             @foreach ($tickets as $item)
             <tr>
                 <th>{{ $item->id }}</th>
-                <td><a href="{{ route('dashboard.tickets.show', ['ticket' => $item['id']]) }}" class="d-inline-block text-truncate" style="max-width: 300px;">{{ $item->title }}</a>
+                <td><a href="{{ route('dashboard.tickets.show', ['ticket' => $item['id']]) }}" class="d-inline-block text-truncate link-opacity-50-hover" style="max-width: 300px;">{{ $item->title }}</a>
                 </td>
                 <td>
                     <span class="d-inline-block text-truncate" style="max-width: 300px;">{{ $item->description }}</span>
                 </td>
-                <td class="text-primary-emphasis">{{$item->category->label}}</td>
-                {{-- <td>{{$item->operator->name}}</td> --}}
-                <td>operator</td>
+                <td class="text-secondary-emphasis">{{$item->category->label}}</td>
+                {{-- <td>{{$item->operators->name}}</td> --}}
+                {{-- <td>operator</td> --}}
                 <td>
 
                     <span class="fw-bold badge rounded-pill @if ($item->status == 'ASSEGNATO') bg-success @elseif($item->status == 'IN LAVORAZIONE')
-                        bg-warning @elseif($item->status == 'CHIUSO')
+                        bg-warning text-dark @elseif($item->status == 'CHIUSO')
                         bg-danger @endif">
                         {{ $item->status }}
                     </span>

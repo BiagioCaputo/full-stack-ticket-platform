@@ -6,10 +6,12 @@
 
         <span
             class="fw-bold badge rounded-pill mb-3 @if ($ticket->status == 'ASSEGNATO') bg-success @elseif($ticket->status == 'IN LAVORAZIONE')
-                        bg-warning @elseif($ticket->status == 'CHIUSO')
+                        bg-warning text-dark @elseif($ticket->status == 'CHIUSO')
                         bg-danger @endif">
             {{ $ticket->status }}
         </span>
+        <span>•</span>
+        <span class="text-secondary-emphasis">{{$ticket->category->label}}</span>
 
         <p>{{ $ticket->description }}</p>
 
@@ -22,7 +24,7 @@
                 @endforeach
             </ul>
         @else
-            <p>Nessun operatore assegnato a questo ticket.</p>
+            <p>Nessun operatore è stato assegnato a questo ticket.</p>
         @endif
 
     </div>
