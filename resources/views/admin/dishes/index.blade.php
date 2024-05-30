@@ -24,14 +24,14 @@
             @foreach ($tickets as $item)
             <tr>
                 <th>{{ $item->id }}</th>
-                <td><a href="{{ route('dashboard.tickets.show', ['ticket' => $item['id']]) }}" class="text-truncate">{{ $item->title }}</a>
+                <td><a href="{{ route('dashboard.tickets.show', ['ticket' => $item['id']]) }}" class="d-inline-block text-truncate" style="max-width: 300px;">{{ $item->title }}</a>
                 </td>
                 <td>
-                    <span class="d-inline-block text-truncate" style="max-width: 400px;">{{ $item->description }}</span>
+                    <span class="d-inline-block text-truncate" style="max-width: 300px;">{{ $item->description }}</span>
                 </td>
-                <!-- <td>{{$item->category}}</td> -->
-                <td>Categoria</td>
-                <td>Operatore</td>
+                <td class="text-primary-emphasis">{{$item->category->label}}</td>
+                {{-- <td>{{$item->operator->name}}</td> --}}
+                <td>operator</td>
                 <td>
 
                     <span class="fw-bold badge rounded-pill @if ($item->status == 'ASSEGNATO') bg-success @elseif($item->status == 'IN LAVORAZIONE')
